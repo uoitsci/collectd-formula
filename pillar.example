@@ -30,6 +30,10 @@ collectd:
               value: user
             - name: password
               value: pass
+    exec:
+      - Exec "myuser:mygroup" "myprog"
+      - Exec "otheruser" "/path/to/another/binary" "arg0" "arg1"
+      - NotificationExec "user" "/usr/lib/collectd/exec/handle_notification"
     syslog:
       loglevel: info
     network:
@@ -143,3 +147,27 @@ collectd:
           variables:
             var1: value1
             var2: value2
+    extra:
+      cpu:
+        ReportByCpu: false
+    tcpconns:
+      listening_ports: 'true'
+      local_ports: []
+      remote_ports: []
+    openvpn:
+      status_file:
+        - "/var/log/openvpn/openvpn-status.log"
+      individual_users: 'false'
+      user_count: 'true'
+      compression: 'false'
+      improved_naming_scheme: 'true'
+    rabbitmq:
+      username: 'guest'
+      password: 'guest'
+      realm: 'RabbitMQ Management'
+      host: 'localhost'
+      port: 15672
+      ignore_queue_regex:
+        - '^queue'
+      ignore_exchange_regex:
+        - '^exchange'
