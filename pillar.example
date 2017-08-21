@@ -31,6 +31,15 @@ collectd:
             type: phpfpm_processes
           slow requests:
             type: phpfpm_slow_requests
+    curl_xml:
+      Url "127.0.0.1/stats":
+        instance: instance
+        xpaths:
+          - name: /stats
+            data:
+              type: uptime
+              values_from:
+                - uptime
     apache:
       instances:
         - name: name
@@ -103,7 +112,6 @@ collectd:
         - 'tmpfs'
       IgnoreSelected: false
       ReportByDevice:
-      ReportReserved:
       ReportInodes:
     ntpd:
       host: localhost
@@ -132,9 +140,11 @@ collectd:
     disk:
       matches: ['/^[hs]d[a-f][0-9]?$/']
     write_graphite:
+      name: graphite
       host: graphite-host
       port: "2003"
-      prefix: "collectd"
+      protocol: "tcp"
+      prefix: "collectd."
       postfix: ""
       logsenderrors: false
       escapecharacter: "_"
