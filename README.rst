@@ -146,10 +146,20 @@ Enables and configures the postgresql plugin. Needs refinement.
 
 Enables and configures the processes plugin
 
+``collectd.protocols``
+----------------------
+
+Enables and configures the protocols plugin
+
 ``collectd.powerdns``
 -----------------------
 
 Enables and configures the powerdns plugin.
+
+``collectd.redis``
+-----------------------
+
+Enables and configures the redis plugin.
 
 ``collectd.syslog``
 -------------------
