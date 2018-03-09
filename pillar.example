@@ -47,6 +47,24 @@ collectd:
           url: 'http://localhost/server-status?auto'
           user: user
           pass: pass
+    bind:
+      proto: http
+      host: localhost
+      port: 8053
+      parsetime: true
+      opcodes: true
+      qtypes: true
+      serverstats: true
+      zonemaintstats: true
+      resolverstats: false
+      memorystats: true
+      views:
+        - name: _default
+          qtypes: false
+          resolverstats: false
+          cacherrsets: false
+          zones:
+            - 127.in-addr.arpa/IN
     dbi:
       queries:
         - name: mysql_user_connections
@@ -104,6 +122,15 @@ collectd:
       socket: '/var/run/pdns.controlsocket'
     protocols:
       IgnoreSelected: True
+    openldap:
+      instances:
+        - name: ldap
+          url: ldap://localhost
+          binddn: "cn=monitor, dc=example, dc=com"
+          password: MyOwnPassword
+          verifyhost: true
+          starttls: true
+          cacert: /etc/ssl/certs/ca-cert.pem
     df:
       Devices:
         - 'md1'
@@ -184,7 +211,7 @@ collectd:
       LogTraces: true
       Interactive: false
       modules:
-        module_name
+        module_name: # Replace module_name by your Python module
           variables:
             var1: value1
             var2: value2
@@ -212,3 +239,6 @@ collectd:
         - '^queue'
       ignore_exchange_regex:
         - '^exchange'
+    zookeeper:
+      host: localhost
+      port: 2181
