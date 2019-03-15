@@ -185,8 +185,11 @@ collectd:
       storerates: true
       alwaysappendds: false
     processes:
-      - java
-      - python
+      Processes: 
+        - 'java'
+        - 'python'
+      ProcessMatches:
+        - '.*java.*'
     statsd:
       host: localhost
       port: 8125
@@ -223,6 +226,7 @@ collectd:
         ReportByCpu: false
     tcpconns:
       listening_ports: 'true'
+      all_ports_summary: 'false'
       local_ports: []
       remote_ports: []
     openvpn:
